@@ -1,0 +1,453 @@
+:root {
+    --main-colour: #0f2f47;
+    --bg-colour: #7e878f;
+    --confirm: rgba(0, 144, 0, 0.4);
+    --reject: rgba(255, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui;
+}
+
+body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* -------------------------------------- Sidebar -------------------------------------------*/
+
+.menu {
+    background-color: var(--main-colour);
+    flex: 1;
+    min-width: 360px;
+    padding: 28px;
+}
+
+h1 {
+    color: white;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.project-header {
+    padding: 0 20px;
+}
+
+/* Project Default */
+.project-default, .project-add {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-default h2 {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.project-default button {
+    padding: 0px 24px;
+}
+
+.project-default input {
+    width: 100%;
+    padding: 4px;
+}
+
+.project-add {
+    display: flex;
+    gap: 8px;
+}
+
+.project-add input {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.project-add button {
+    padding: 0px 16px;
+}
+
+.project-default.hidden {
+    display: none
+}
+
+.project-add.hidden {
+    display: none;
+}
+
+.menu hr {
+    margin: 4px auto 12px auto;
+    width: 88%;
+}
+
+.project-container {
+    margin: 0 auto;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.project {
+    border-radius: 12px;
+    padding: 4px 12px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.project-select {
+    position: absolute;
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    opacity: 0;
+}
+
+.project-select:hover {
+    cursor: pointer;
+}
+
+.project h3 {
+    font-size: 0.9rem;
+}
+
+.project .add-project {
+    padding: 4px 12px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    color: grey;
+    z-index: 1;
+}
+
+.project .add-project:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    color: black;
+}
+
+
+/* ----------------------------------- Content Window -----------------------------------*/ 
+
+.content {
+    background-color: var(--bg-colour);
+    flex: 5;
+}
+
+.content .add-todo {
+    display: block;
+    margin: 28px auto;
+    padding: 12px 24px;
+}
+
+.content h2 {
+    font-size: 3em;
+    text-align: center;
+    margin: 28px 0px;
+}
+
+.todo-container {
+    margin: 0 auto;
+    max-width: 740px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.todo {
+    width: 100%;
+    min-height: 64px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.todo-selector {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    opacity: 0;
+    background-color: black;
+}
+
+.todo-selector:hover {
+    cursor: pointer;
+    opacity: 0.2;
+}
+
+.todo .check {
+    align-self: center;
+    background-color: var(--bg-colour);
+    margin: 0 24px;
+    padding: 8px 8px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.todo .check:hover {
+    cursor: pointer;
+    background-color: var(--confirm);
+}
+
+.todo .todo-content {
+    flex: 10;   
+}
+
+.todo-content h3 {
+    font-size: 1.5rem;
+}
+
+.todo-content p {
+    font-size: 0.9rem;
+}
+
+.todo .delete {
+    padding: 16px 8px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border: none;
+    flex: 1;
+    z-index: 1;
+    position: relative;
+}
+
+.todo .delete:hover {
+    cursor: pointer;
+    color: var(--reject);
+    transform: scale(1.2);
+}
+
+.delete p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+}
+
+.todo.complete{
+    opacity: 0.3;
+}
+
+/* ------------------------- Form -------------------------- */
+.form-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    display: none;
+}
+
+.form-container.active {
+    display: inline;
+}
+
+.form-container form {
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 600px;
+    max-width: 800px;
+    height: 80%;
+    border-radius: 24px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.form-element,
+.window-element {
+    width: 100%;
+}
+
+.form-element label {
+    display: block;
+    font-weight: bold;
+}
+
+#description,
+#notes {
+    padding: 24px;
+}
+
+#title {
+    width: 100%;
+    border: none;
+    font-size: 2rem;
+}
+
+#description {
+    width: 100%;
+    min-height: 200px;
+    border: 2px solid black;
+    border-radius: 24px;
+}
+
+#date {
+    padding: 4px;
+}
+
+#notes {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 24px;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.cancel,
+.submit {
+    width: 128px;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.cancel:hover {
+    cursor: pointer;
+    background-color: var(--reject);
+}
+
+.submit:hover { 
+    cursor: pointer;
+    background-color: var(--confirm);
+}
+
+
+/* ------------------------- Todo -------------------------- */
+.todo-expanded {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+.todo-expanded.hidden {
+    display: none;
+}
+
+.todo-expanded-close {
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.todo-expanded-close:hover{
+    cursor: pointer;
+}
+
+.window {
+    position: relative;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    min-width: 600px;
+    max-width: 800px;
+    height: 80%;
+    border-radius: 24px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 3;
+}
+
+.window-section {
+    width: 100%;
+}
+
+.window-section h2 {
+    font-size: 2rem;
+}
+
+.window-section h3 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.window-section:nth-child(1) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.window-close {
+    padding: 0px 12px;
+    font-size: 1.8rem;
+    border: none;
+}
+
+.window-close:hover {
+    color: var(--confirm);
+}
+
+.window-description-border {
+    width: 100%;
+    min-height: 200px;
+    border: 2px solid black;
+    border-radius: 24px;
+    padding: 24px;
+}
+
+.window-due-text {
+    padding-left: 24px;
+}
+
+.window-notes-border {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 24px;
+    padding: 24px;
+    min-height: 120px;
+}
+
+.window-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+}
+
+.edit,
+.remove {
+    width: 128px;
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.edit:hover {
+    cursor: pointer;
+    background-color: var(--confirm);
+}
+
+.remove:hover {
+    cursor: pointer;
+    background-color: var(--reject);
+}
