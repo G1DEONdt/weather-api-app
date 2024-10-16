@@ -1,4 +1,3 @@
-- Webpack, webpack-cli, webpack-dev-server
-- css-loader, style-loader
-- html-webpack-plugin
-- gh-pages
+# Weather App
+Project from `Project: Weather App` section of `The Odin Project`
+Live Demo: [Here](https://g1deondt.github.io/weather-api-app/)
